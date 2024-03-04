@@ -1,6 +1,7 @@
 :root {
     /*NavBar*/
     --theme_colour-Qantas_Red: #BE2025;
+    --theme_colour-Bright_Red: #FF0000;
     --theme_colour-Light_Grey: #EEEEEE;
     --theme_colour-Dark_Grey: #444444;
     --theme_colour-Charcoal: #323232;
@@ -52,16 +53,20 @@ a:hover {
 
 /*#region TextStyles ===================================================================*/
 h1 {
-    color: #BE2025;
     font-size: 25pt;
     margin: 0
 }
 
 p {
-    color: #444444;
     font-size: 15pt;
 }
 /*#endregion------------------------------------------------------------------------------*/
+
+
+
+/*#region Fonts ==========================================================================*/
+
+/*#endregion -----------------------------------------------------------------------------*/
 
 
 
@@ -69,8 +74,8 @@ p {
 img.main_logo,
 nav.navbar_main ul,
 .background-layout-section {
-    padding-left: 20vw;
-    padding-right: 20vw;
+    padding-left: 15vw;
+    padding-right: 15vw;
 }
 .background-layout-section {
     padding-top: 2vw;
@@ -80,7 +85,7 @@ nav.navbar_main ul,
 
 
 
-/*#region Div =============================================================================*/
+/*#region Alerts =============================================================================*/
 div.major-alerts-wrapper {
     position: sticky;
     top: 0;
@@ -110,22 +115,48 @@ div.major-alerts-wrapper div.major-alert p {
     margin: 0;
     margin-left: 10px;
 }
-
-
 /*#endregion ------------------------------------------------------------------------------*/
 
 
 
-/*#region Sections ========================================================================*/
+/*#region Colour Sections ========================================================================*/
 .colour-section-Light_Grey {
     background-color: var(--theme_colour-Light_Grey);
+    color: var(--theme_colour-Charcoal)
 }
 .colour-section-White {
     background-color: var(--theme_colour-White);
+    color: var(--theme_colour-Charcoal)
+}
+.colour-section-Qantas_Red {
+    background-color: var(--theme_colour-Qantas_Red);
+    color: var(--theme_colour-White)
+}
+.colour-section-Bright_Red {
+    background-color: var(--theme_colour-Bright_Red);
+    color: var(--theme_colour-White)
 }
 /*#endregion ------------------------------------------------------------------------------*/
 
+div.image-container {
+    padding: 0;
+    margin: 0;
+    position: relative;
+    text-align: center;
+    color: white;
+}
 
+div.image-container img {
+    z-index: -10;
+}
+
+div.image-container div.centre-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0;
+}
 
 /*#region NavBar ========================================================================*/
 nav.navbar_main {

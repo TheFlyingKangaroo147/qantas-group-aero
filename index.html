@@ -9,6 +9,14 @@
     <meta charset="utf-8" />
 </head>
 
+<script>
+    function SanatizeText(text) {
+        text = text.replace('<script>', '');
+        text = text.replace('<style>', '');
+        return text;
+    }
+</script>
+
 <body>
     <div class="major-alerts-wrapper">
         <template>
@@ -57,14 +65,24 @@
                     console.log("found:majorAlertDivTemplate -> p, element not found.")
                     return;
                 }
-                alertParagraph.innerHTML = text
+                let paragraphs = text.split('\n');
+                alertParagraph.textContent = paragraphs[0];
+
+                for (let i = 1; i < paragraphs.length; i++) {
+                    let paragraph = paragraphs[i];
+                    alertParagraph.appendChild(document.createElement("br"));
+                    alertParagraph.innerHTML += SanatizeText(paragraph);
+                }
 
                 alertWrapper.appendChild(newMajorAlert);
             }
 
-            ClearAllMajorAlerts();
-            AddMajorAlert("Website is currently under construction, expect bugs and missing features<br/>Report all problems to the discord");
-            AddMajorAlert("Flight logger not functional yet");
+            function ReadAlerts() {
+                ClearAllMajorAlerts();
+                AddMajorAlert("Website is currently under construction, expect bugs and missing features\nReport all problems to the discord");
+            }
+
+            ReadAlerts();
         </script>
     </div>
     <header>
@@ -116,18 +134,18 @@
 
 
     <main>
-        <div class="colour-section-Light_Grey">
-            <div class="background-layout-section">
-                <h1>Welcome to Qantas Group Aeronautica</h1>
-                <p>The Spirit of Australia is now in Roblox Aeronautica!</p>
-                <p>We hope to see you in our skies soon!</p>
+        <div class="image-container">
+            <div class="colour-section-Bright_Red">
+                <img src="images/banners/RobloxScreenShot20230927_135637354.png" alt="a cycling banner" width="100%" />
+                <div class="centre-text">
+                    <div class="background-layout-section">
+                        <h1>Welcome to Qantas Group Aeronautica</h1>
+                        <p>The Spirit of Australia is now in Roblox Aeronautica!</p>
+                        <p>We hope to see you in our skies soon!</p>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="colour-section-White">
-            <div class="background-layout-section">
-                <h1>Lorem Ipsum</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem a vitae nemo obcaecati nulla quidem aliquam fugit minima aliquid suscipit quos est pariatur porro ad debitis, magni similique error ipsum!</p>
-            </div>
         </div>
         <div class="colour-section-Light_Grey">
             <div class="background-layout-section">
