@@ -81,20 +81,21 @@ nav.navbar_main ul,
 
 
 /*#region Div =============================================================================*/
-.major-alerts-wrap {
+div.major-alerts-wrapper {
     position: sticky;
     top: 0;
     padding: 0px;
+    z-index: 200px;
 }
 
-.major-alerts-wrap .major-alert {
+div.major-alerts-wrapper div.major-alert {
     background-color: var(--alert_colour-bg-background);
     padding: 10px;
     display: flex;
     align-items: center;
 }
 
-.major-alerts-wrap .major-alert img.icon {
+div.major-alerts-wrapper div.major-alert img.icon {
     width: 20px;
     height: 20px;
     padding: 0px;
@@ -102,7 +103,7 @@ nav.navbar_main ul,
     margin-left: 20vw;
 }
 
-.major-alerts-wrap .major-alert p {
+div.major-alerts-wrapper div.major-alert p {
     color: var(--alert_colour-text-main);
     text-align: left;
     font-size: 15px;
@@ -130,8 +131,9 @@ nav.navbar_main ul,
 nav.navbar_main {
     background-color: var(--navbar-colour-bg-unselected);
     position: sticky;
-    top: 50px;
+    /*top: {SMTH} ; This is where JavaScript will set the value */
     padding: 0px;
+    z-index: 50px;
 }
 
 nav.navbar_main ul {

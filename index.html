@@ -10,11 +10,62 @@
 </head>
 
 <body>
-    <div class="major-alerts-wrap">
-        <div class="major-alert">
-            <img src="images/icons/alert_warning.png" alt="warning icon" class="icon" />
-            <p>Website is currently under construction, expect bugs and missing features<br />Report all problems to the discord</p>
-        </div>
+    <div class="major-alerts-wrapper">
+        <template>
+            <div class="major-alert"> <!--major-alert Template to Populate-->
+                <img src="images/icons/alert_warning.png" alt="warning icon" class="icon" />
+                <p>INSERT-ALERT-TEXT</p>
+            </div>
+        </template>
+
+        <script>
+            function ClearAllMajorAlerts() {
+                let alertWrapper = document.querySelector("div.major-alerts-wrapper");
+                if (!alertWrapper) {
+                    console.log("known:document -> div.major-alerts-wrapper, element not found.");
+                    return;
+                }
+
+                let majortAlertDivs = alertWrapper.querySelectorAll("div.major-alert");
+                if (!majortAlertDivs) {
+                    console.log("found:alertWrapper all-> div.major-alert, elements not found.");
+                    return;
+                }
+
+                majortAlertDivs.forEach(divElement => divElement.remove());
+            }
+            function AddMajorAlert(text) {
+                let alertWrapper = document.querySelector("div.major-alerts-wrapper");
+                if (!alertWrapper) {
+                    console.log("known:document -> div.major-alerts-wrapper, element not found.");
+                    return;
+                }
+                let templateContainer = alertWrapper.querySelector("template");
+                if (!templateContainer) {
+                    console.log("found:alertWrapper -> template, element not found.");
+                    return;
+                }
+                let majorAlertDivTemplate = templateContainer.content.querySelector("div.major-alert"); //.content is required because a webpage will place the contents of a <template> tag inside a #document-fragment
+                if (!majorAlertDivTemplate) {
+                    console.log("found:templateContainer -> div.major-alert, element not found.");
+                    return;
+                }
+
+                let newMajorAlert = majorAlertDivTemplate.cloneNode(true); //cloneNode(deep) deep is whether to clone node descendants (children) 
+                let alertParagraph = newMajorAlert.querySelector("p");
+                if (!alertParagraph) {
+                    console.log("found:majorAlertDivTemplate -> p, element not found.")
+                    return;
+                }
+                alertParagraph.innerHTML = text
+
+                alertWrapper.appendChild(newMajorAlert);
+            }
+
+            ClearAllMajorAlerts();
+            AddMajorAlert("Website is currently under construction, expect bugs and missing features<br/>Report all problems to the discord");
+            AddMajorAlert("Flight logger not functional yet");
+        </script>
     </div>
     <header>
         <div>
@@ -22,6 +73,25 @@
         </div>
     </header>
     <nav class="navbar_main">
+        <script>
+            //Set's nav.navbar_main top for stickiness to the offsetHeight of the div.major-alerts-wrapper
+
+            function AdjustNavbarTopToAlertWrapperHeight() {
+                let navbar = document.querySelector("nav.navbar_main");
+                let alertWrapper = document.querySelector("div.major-alerts-wrapper");
+
+                if (navbar && alertWrapper) {
+                    if (alertWrapper.offsetHeight < 1) {
+                        navbar.style.top = "-0.1px"
+                    } else {
+                        navbar.style.top = `${alertWrapper.offsetHeight}px`;
+                    }
+                } else {
+                    console.log("nav.navbar_main or div.major-alerts-wrapper element not found.");
+                }
+            }
+            AdjustNavbarTopToAlertWrapperHeight();
+        </script>
         <ul>
             <li class="navbar_active">Home</li>
             <li><a href="#">Our Discord</a></li>
@@ -42,6 +112,9 @@
             </li>
         </ul>
     </nav>
+
+
+
     <main>
         <div class="colour-section-Light_Grey">
             <div class="background-layout-section">
@@ -73,8 +146,6 @@
     <footer>
 
     </footer>
-
-</body>
 </body>
 
 </html>
