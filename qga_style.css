@@ -6,6 +6,9 @@
     --theme_colour-Charcoal: #323232;
     --theme_colour-White: #FFFFFF;
 
+    --alert_colour-bg-background: #e7cc99;
+    --alert_colour-text-main: #212121;
+
 
     --navbar-height-px: 20px;
     --navbar-colour-bg-current: var(--theme_colour-Qantas_Red);
@@ -17,7 +20,7 @@
 
 
 
-/*#region Basic Setup ========================================================================*/
+/*#region BasicSetup ========================================================================*/
 body,
 main,
 header,
@@ -34,12 +37,7 @@ body {
     font-size: 10pt;
 }
 
-
-
-.whiteColor {
-    background-color: #e5e5e5;
-}
-
+/*Basic Hyperlink*/
 a {
     text-decoration: none;
     color: black;
@@ -47,11 +45,12 @@ a {
 a:hover {
     color: blue;
 }
+
 /*#endregion -----------------------------------------------------------------------------*/
 
 
 
-/*#region Text Styles ===================================================================*/
+/*#region TextStyles ===================================================================*/
 h1 {
     color: #BE2025;
     font-size: 25pt;
@@ -63,6 +62,10 @@ p {
     font-size: 15pt;
 }
 /*#endregion------------------------------------------------------------------------------*/
+
+
+
+/*#region Padding ========================================================================*/
 img.main_logo,
 nav.navbar_main ul,
 .background-layout-section {
@@ -74,16 +77,59 @@ img.main_logo,
     padding-top: 2vw;
     padding-bottom: 2vw;
 }
+/*#endregion -----------------------------------------------------------------------------*/
 
 
 
+/*#region Div =============================================================================*/
+.major-alerts-wrap {
+    position: sticky;
+    top: 0;
+    padding: 0px;
+}
+
+.major-alerts-wrap .major-alert {
+    background-color: var(--alert_colour-bg-background);
+    padding: 5px;
+    display: flex;
+    border-bottom: 4px solid var(--alert_colour-text-main);
+}
+
+.major-alerts-wrap .major-alert img.icon {
+    width: 40px;
+    padding: 0px;
+}
+
+.major-alerts-wrap .major-alert p {
+    color: var(--alert_colour-text-main);
+    text-align: left;
+    font-size: 15px;
+    margin: 0;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+
+/*#endregion ------------------------------------------------------------------------------*/
+
+
+
+/*#region Sections ========================================================================*/
 .colour-section-Light_Grey {
     background-color: var(--theme_colour-Light_Grey);
 }
+.colour-section-White {
+    background-color: var(--theme_colour-White);
+}
+/*#endregion ------------------------------------------------------------------------------*/
 
-/*#region NavBar *========================================================================*/
+
+
+/*#region NavBar ========================================================================*/
 nav.navbar_main {
     background-color: var(--navbar-colour-bg-unselected);
+    position: sticky;
+    top: 50px;
     padding: 0px;
 }
 
@@ -126,10 +172,7 @@ nav.navbar_main li:hover:not(.navbar_active) {
     text-decoration: underline;
 }
 
-
-
-
-
+/*Sub Bar*/
 nav.navbar_main li ul.navbar_subbar {
     position: absolute;
     background-color: var(--navbar-colour-bg-unselected);
@@ -142,14 +185,17 @@ nav.navbar_main li ul.navbar_subbar {
     display: flex;
     flex-direction: column;
     padding: 0;
-
+    z-index: -100;
 }
 
 nav.navbar_main li:hover:not(.navbar_active) ul.navbar_subbar {
     opacity: 1;
     margin-top: var(--navbar-height-px);
+    z-index: 100;
 }
 /*#endregion ------------------------------------------------------------------------------*/
+
+
 
 
 @media all and (max-width: 700px) {
